@@ -37,12 +37,6 @@
             <version>7.53.0.Final</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.kie.server</groupId>
-            <artifactId>kie-server-client</artifactId>
-            <version>7.53.0.Final</version>
-        </dependency>
-
         <!-- kjar here -->
         <dependency>
             <groupId>com.edw</groupId>
