@@ -1,13 +1,20 @@
 package com.edw.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 /**
  * <pre>
@@ -32,10 +39,9 @@ public class KieSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     *  set your username and password here, we can also connect it into ldap, AD, or existing user-management table by using Keycloak
+     * set your username and password here, we can also connect it into ldap, AD, or existing user-management table
+     * by using Keycloak
      *
-     * @param auth
-     * @throws Exception
      */
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -43,5 +49,30 @@ public class KieSecurityConfig extends WebSecurityConfigurerAdapter {
 
         auth.inMemoryAuthentication()
                 .withUser("kieserver").password(encoder.encode("password")).roles("kie-server");
+
+        auth.inMemoryAuthentication()
+                .withUser("wbadmin").password(encoder.encode("wbadmin")).roles("kie-server");
+
+        auth.inMemoryAuthentication()
+                .withUser("manager").password(encoder.encode("password")).roles("manager");
+
+        auth.inMemoryAuthentication()
+                .withUser("analyst").password(encoder.encode("password")).roles("kie-server");
+
+        auth.inMemoryAuthentication()
+                .withUser("user").password(encoder.encode("password")).roles("kie-server");
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.setAllowedOrigins(Arrays.asList("*"));
+        corsConfiguration.setAllowCredentials(true);
+        corsConfiguration.setAllowedMethods(Arrays.asList(HttpMethod.GET.name(), HttpMethod.HEAD.name(),
+                HttpMethod.POST.name(), HttpMethod.DELETE.name(), HttpMethod.PUT.name()));
+        corsConfiguration.applyPermitDefaultValues();
+        source.registerCorsConfiguration("/**", corsConfiguration);
+        return source;
     }
 }

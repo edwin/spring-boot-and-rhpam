@@ -21,7 +21,9 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <narayana.version>5.6.4.Final</narayana.version>
+
         <kjar.version>1.6.0</kjar.version>
+        <kie.version>7.53.0.Final</kie.version>
     </properties>
 
     <dependencies>
@@ -34,7 +36,17 @@
         <dependency>
             <groupId>org.kie</groupId>
             <artifactId>kie-server-spring-boot-starter-jbpm</artifactId>
-            <version>7.53.0.Final</version>
+            <version>${kie.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.kie.server</groupId>
+            <artifactId>kie-server-controller-websocket-client</artifactId>
+            <version>${kie.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.kie.server</groupId>
+            <artifactId>kie-server-client</artifactId>
+            <version>${kie.version}</version>
         </dependency>
 
         <!-- kjar here -->

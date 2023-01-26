@@ -95,6 +95,17 @@ the result would be like this, we can check `variable-instance` with the name `s
 </variable-instance-list>
 ```
 
+## Conencting to BusinessCentral
+We need to set the BusinessCentral endpoint on our `application.properties`
+```
+kieserver.controllers=ws://127.0.0.1:8090/business-central/websocket/controller
+```
+
+and we can monitor our process there
+![](images/bpm02.PNG)
+
+![](images/bpm01.PNG)
+
 ## Blog Post
 for more detail regarding this workflow, we can check my previous blogpost
 ```

@@ -1,10 +1,22 @@
 <kie-server-state>
-  <controllers/>
+  <controllers>
+    <string>ws://127.0.0.1:8090/business-central/websocket/controller</string>
+  </controllers>
   <configuration>
     <configItems>
       <config-item>
+        <name>org.kie.server.controller.pwd</name>
+        <value>wbadmin</value>
+        <type>java.lang.String</type>
+      </config-item>
+      <config-item>
+        <name>org.kie.server.controller.user</name>
+        <value>wbadmin</value>
+        <type>java.lang.String</type>
+      </config-item>
+      <config-item>
         <name>org.kie.server.location</name>
-        <value>http://localhost:8080/rest/server</value>
+        <value>http://127.0.0.1:8080/rest/server</value>
         <type>java.lang.String</type>
       </config-item>
       <config-item>
@@ -19,7 +31,7 @@
       </config-item>
       <config-item>
         <name>org.kie.server.controller</name>
-        <value></value>
+        <value>ws://127.0.0.1:8090/business-central/websocket/controller</value>
         <type>java.lang.String</type>
       </config-item>
     </configItems>
