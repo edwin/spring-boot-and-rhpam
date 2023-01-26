@@ -12,7 +12,7 @@ We need to include KJar which is being created by JBpm on our `pom.xml`
         </dependency>
 ```
 
-And start it from our `kie-server-project01.xml`
+And set our `KJar` status as `STARTED` it from our `kie-server-project01.xml`
 ```xml
   <containers>
     <container>

@@ -31,6 +31,12 @@ public class KieSecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic();
     }
 
+    /**
+     *  set your username and password here, we can also connect it into ldap, AD, or existing user-management table by using Keycloak
+     *
+     * @param auth
+     * @throws Exception
+     */
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
